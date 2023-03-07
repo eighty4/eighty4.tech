@@ -1,0 +1,14 @@
+main {
+    width: 50%;
+    min-width: 500px;
+}
+
+.shell-cmd {
+    color: #e8e4d2;
+    position: relative;
+}
+
+.shell-cmd pre {
+    background: #231f20;
+    padding: 2em;
+}
