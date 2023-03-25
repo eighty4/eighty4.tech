@@ -49,6 +49,7 @@
             --badge-lumination: 75%;
             --project-header-height: 3rem;
             --clipboard-icon-size: 1.5rem;
+            --edge-margin: 3rem;
         }
 
         * {
@@ -63,11 +64,28 @@
         }
 
         main {
-            margin-left: 20%;
-            width: 50%;
-            min-width: 30rem;
-            max-width: 40rem;
-            margin-bottom: var(--project-header-height);
+            margin-bottom: var(--edge-margin);
+        }
+
+        @media (min-width: 576px) and  (max-width: 831px) {
+            body {
+                padding: 0 var(--edge-margin);
+            }
+        }
+
+        @media (min-width: 832px) and  (max-width: 895px) {
+            body {
+                padding: 0 var(--edge-margin);
+            }
+        }
+
+        @media (min-width: 896px) {
+            main {
+                margin-left: 20%;
+                width: 50%;
+                min-width: 30rem;
+                max-width: 40rem;
+            }
         }
 
         h1 {
@@ -134,8 +152,19 @@
 
         .project h3 .github-link {
             position: absolute;
-            left: -3rem;
             height: 2rem;
+        }
+
+        @media (max-width: 895px) {
+            .project h3 .github-link {
+                right: 1rem;
+            }
+        }
+
+        @media (min-width: 896px) {
+            .project h3 .github-link {
+                left: -3rem;
+            }
         }
 
         .project h3 .github-link img {
