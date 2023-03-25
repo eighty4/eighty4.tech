@@ -193,10 +193,31 @@
 
         .project .description {
             padding: 0 1.5rem;
-            font-size: 1.15rem;
-            letter-spacing: .02rem;
-            line-height: 1.5rem;
             margin: 2rem 0;
+        }
+
+        @media (max-width: 831px) {
+            .project .description {
+                font-size: 1.25rem;
+                line-height: 1.8rem;
+                letter-spacing: .04rem;
+            }
+        }
+
+        @media (min-width: 832px) and  (max-width: 895px) {
+            .project .description {
+                font-size: 1.2rem;
+                line-height: 1.65rem;
+                letter-spacing: .03rem;
+            }
+        }
+
+        @media (min-width: 896px) {
+            .project .description {
+                font-size: 1.15rem;
+                letter-spacing: .02rem;
+                line-height: 1.5rem;
+            }
         }
 
         .project .shell-cmd {
