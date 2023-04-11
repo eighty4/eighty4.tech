@@ -3,6 +3,8 @@ name: GitHub Actions deploy
 on:
   push:
     branches: ["main"]
+    paths:
+      - "apex/**/*"
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
 permissions:
@@ -23,14 +25,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - run: rm .gitignore
-      - run: rm -rf lib
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: '.'
+          path: 'apex'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
