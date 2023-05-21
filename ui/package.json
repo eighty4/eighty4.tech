@@ -1,7 +1,7 @@
 {
 	"name": "@eighty4/app-ui",
 	"description": "UI components used for https://eighty4.tech",
-	"version": "0.0.1-1",
+	"version": "0.0.1-2",
 	"author": "Adam McKee Bennett <adam.be.g84d@gmail.com> (https://eighty4.tech)",
 	"license": "MIT",
 	"private": false,
