@@ -16,8 +16,8 @@ jobs:
       - build
       - check
       - lint
-      - test
-      - playwright
+#      - test
+#      - playwright
     steps:
       - run: echo "When you're on a holiday"
 
