@@ -85,7 +85,7 @@ jobs:
       - run: |
           cd ui
           pnpm i
-          npx eslint .
+          pnpm lint
 
   publish-prerelease:
     name: Publish @next to npm
