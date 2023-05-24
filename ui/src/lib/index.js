@@ -1,1 +1,2 @@
-export Header from './header/Header.svelte'
+const Header = require('./header/Header.svelte')
+module.exports = {Header}
