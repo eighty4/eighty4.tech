@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Host: eighty4.tech
+Sitemap: https://eighty4.tech/sitemap-index.xml

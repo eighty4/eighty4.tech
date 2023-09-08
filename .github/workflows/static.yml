@@ -27,10 +27,21 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: Install node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install pnpm
+        run: corepack enable && corepack prepare pnpm@latest --activate
+      - name: Build site
+        run: |
+          cd apex
+          pnpm i
+          pnpm build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'apex'
+          path: 'apex/dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

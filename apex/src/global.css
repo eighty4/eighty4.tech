@@ -1,0 +1,66 @@
+:root {
+	--color-accent-dark: mediumvioletred;
+	--color-bg-dark: rgb(20, 22, 24);
+	--color-text-dark: rgb(235, 237, 239);
+
+	--color-accent-light: mediumvioletred;
+	--color-bg-light: rgb(235, 237, 239);
+	--color-text-light: rgb(15, 17, 19);
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Roboto, sans-serif;
+	text-align: left;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+html {
+	--theme-color-bg: var(--color-bg-dark);
+	--theme-color-text: var(--color-text-dark);
+	background: var(--color-bg-dark);
+	color: var(--color-bg-dark);
+}
+
+html.light {
+	--theme-color-bg: var(--color-bg-light);
+	--theme-color-text: var(--color-text-light);
+	background: rgb(235, 237, 239);
+	color: rgb(15, 17, 19);
+}
+
+main {
+	width: 720px;
+	max-width: calc(100% - 2rem);
+	margin: auto;
+	padding: 3rem 1rem;
+}
+
+@media (max-width: 720px) {
+	main {
+		padding: 1rem;
+	}
+}
+
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+	clip: rect(1px 1px 1px 1px);
+	/* maybe deprecated but we need to support legacy browsers */
+	clip: rect(1px, 1px, 1px, 1px);
+	/* modern browsers, clip-path works inwards from each corner */
+	clip-path: inset(50%);
+	/* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+	white-space: nowrap;
+}

@@ -1,0 +1,33 @@
+---
+import ThemeIcon from '@src/components/ThemeIcon.astro'
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="description" content="Software engineering output of Adam McKee Bennett"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <link rel="manifest" href="/manifest.json"/>
+    <title>eighty4.tech</title>
+    <script is:inline>
+        let theme
+        if (typeof localStorage !== 'undefined') {
+            theme = localStorage.getItem('theme')
+        }
+        if (!theme) {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'theme'
+        }
+        document.documentElement.classList[theme === 'light' ? 'add' : 'remove']('light')
+        window.localStorage.setItem('theme', theme)
+    </script>
+</head>
+<body>
+<header>
+    <ThemeIcon/>
+</header>
+<main>
+    <slot/>
+</main>
+</body>
+</html>
