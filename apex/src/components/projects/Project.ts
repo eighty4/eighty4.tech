@@ -1,44 +1,63 @@
-import type {Tech} from './Tech'
+import {Tech, techByCategory} from './Tech'
+import {TechCategory} from './Tech'
 
-export interface Project {
-    name: string
-    repository: string
-    technologies: Array<Tech>
+export enum LinkType {
+    docs = 'docs',
+    repository = 'repository',
+    website = 'website',
 }
 
-export const projects: Array<Project> = [
-    {
-        name: 'cquill',
-        repository: 'https://github.com/eighty4/cquill',
-        technologies: ['CQL', 'ScyllaDB', 'Rust', 'Docker', 'Docker Compose', 'GitHub Actions'],
-    },
-    {
-        name: 'libtab',
-        repository: 'https://github.com/eighty4/libtab',
-        technologies: ['Dart', 'Flutter', 'GitHub Actions'],
-    },
-    {
-        name: 'maestro',
-        repository: 'https://github.com/eighty4/maetsro',
-        technologies: ['Golang', 'Git', 'GitHub Actions'],
-    },
-    {
-        name: 'qwerky',
-        repository: 'https://github.com/eighty4/qwerky',
-        technologies: ['JavaScript', 'Node.js', 'Plaid'],
-    },
-    {
-        name: 'trousers',
-        repository: 'https://github.com/eighty4/trousers',
-        technologies: ['JavaScript', 'Node.js', 'Plaid'],
-    },
-    {
-        name: 'velcro',
-        repository: 'https://github.com/eighty4/velcro',
-        technologies: ['JavaScript', 'Node.js', 'Elasticsearch', 'pnpm', 'Docker Compose', 'Docker', 'TypeScript'],
-    },
-]
+export interface Project {
+    description?: string
+    examples?: Array<TechExample>
+    instructions?: Array<Instruction>
+    links?: Partial<Record<LinkType, string>>
+    name: string
+    technologies?: Array<Tech>
+}
 
-export function getProjectsWithTech(tech: Array<Tech>): Array<Project> {
-    return projects.filter(project => tech.every(t => project.technologies.indexOf(t) !== -1))
+export interface Instruction {
+    label: string
+    sections: Array<CommandBlock>
+}
+
+export interface CommandBlock {
+    afterward?: Array<string>
+    commands?: Array<string>
+    forward?: Array<string>
+}
+
+export interface TechExample {
+    tech: Array<Tech>
+    references: Array<TechReference>
+}
+
+export interface TechReference {
+    url: string
+    line: number
+}
+
+export function getTechnologiesFromProjects(projects: Array<Project>): Partial<Record<TechCategory, Array<Tech>>> {
+    const count: Partial<Record<Tech, number>> = {}
+    for (const tech of Object.keys(Tech)) {
+        count[tech] = 0
+    }
+    for (const project of projects) {
+        for (const tech of project.technologies) {
+            count[tech]++
+        }
+    }
+    const result: Partial<Record<TechCategory, Array<Tech>>> = {}
+    for (const category of Object.keys(techByCategory)) {
+        const categoryTech: Array<Tech> = []
+        for (const tech of techByCategory[category]) {
+            if (count[tech]) {
+                categoryTech.push(tech)
+            }
+        }
+        if (categoryTech.length) {
+            result[category] = categoryTech.sort((a, b) => count[b] - count[a])
+        }
+    }
+    return result
 }

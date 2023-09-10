@@ -1,27 +1,70 @@
-export const technologies = [
-    // apis
-    'Plaid',
-    // builds
-    'Docker', 'Docker Compose', 'GitHub Actions', 'pnpm', 'Rush',
-    // databases
-    'Cassandra', 'ScyllaDB', 'CQL', 'Postgres', 'Elasticsearch',
-    // frameworks
-    'Flutter',
-    // languages
-    'Rust', 'Dart', 'Golang', 'JavaScript', 'TypeScript',
-    // runtimes
-    'Node.js',
-    // programs
-    'Git'
-] as const
+export enum Tech {
+    Cassandra = 'Cassandra',
+    CQL = 'CQL',
+    Dart = 'Dart',
+    Docker = 'Docker',
+    DockerCompose = 'Docker Compose',
+    Elasticsearch = 'Elasticsearch',
+    Flutter = 'Flutter',
+    Git = 'Git',
+    GitHubActions = 'GitHub Actions',
+    Golang = 'Golang',
+    JavaScript = 'JavaScript',
+    NodeJS = 'Node.js',
+    Plaid = 'Plaid',
+    Playwright = 'Playwright',
+    Postgres = 'Postgres',
+    Redis = 'Redis',
+    Rust = 'Rust',
+    ScyllaDB = 'ScyllaDB',
+    TypeScript = 'TypeScript',
+}
 
-export type Tech = typeof technologies[number]
+export enum TechCategory {
+    APIs = 'APIs',
+    Builds = 'Builds',
+    Databases = 'Databases',
+    Frameworks = 'Frameworks',
+    Languages = 'Languages',
+    Libraries = 'Libraries',
+    Programs = 'Programs',
+    Runtimes = 'Runtimes',
+}
 
-export const categorized: Record<string, Array<Tech>> = {
-    // Apis: ['Plaid'],
-    Builds: ['Docker', 'Docker Compose', 'GitHub Actions', 'pnpm', 'Rush'],
-    Databases: ['Cassandra', 'ScyllaDB', 'CQL', 'Postgres', 'Elasticsearch'],
-    Languages: ['Rust', 'Dart', 'Golang', 'JavaScript', 'TypeScript'],
-    // Runtimes: ['Node.js'],
-    // Programs: ['Git'],
+export const techByCategory: Record<TechCategory, Array<Tech>> = {
+    APIs: [
+        Tech.Plaid,
+    ],
+    Builds: [
+        Tech.Docker,
+        Tech.DockerCompose,
+        Tech.GitHubActions,
+    ],
+    Databases: [
+        Tech.Cassandra,
+        Tech.Elasticsearch,
+        Tech.Postgres,
+        Tech.Redis,
+        Tech.ScyllaDB,
+    ],
+    Frameworks: [
+        Tech.Flutter,
+    ],
+    Languages: [
+        Tech.CQL,
+        Tech.Dart,
+        Tech.Golang,
+        Tech.JavaScript,
+        Tech.Rust,
+        Tech.TypeScript,
+    ],
+    Libraries: [
+        Tech.Playwright,
+    ],
+    Programs: [
+        Tech.Git,
+    ],
+    Runtimes: [
+        Tech.NodeJS,
+    ],
 }

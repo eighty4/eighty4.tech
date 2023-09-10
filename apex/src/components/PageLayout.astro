@@ -1,5 +1,6 @@
 ---
-import ThemeIcon from '@src/components/ThemeIcon.astro'
+import '@src/global.css'
+import ThemeIcon from '@src/components/theme/ThemeIcon.astro'
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -31,3 +32,16 @@ import ThemeIcon from '@src/components/ThemeIcon.astro'
 </main>
 </body>
 </html>
+
+<style>
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 6rem;
+        background: var(--theme-color-header);
+    }
+    main {
+        height: calc(100% - 6rem);
+    }
+</style>
