@@ -1,0 +1,29 @@
+---
+import PageLayout from '../components/PageLayout.astro'
+---
+
+<PageLayout>
+    <div class="apps">
+        <div class="app">
+            <h3>Picking</h3>
+            <p>A banjo and guitar companion app for bluegrass beginners.</p>
+            <p><a href="https://picking.eighty4.tech" target="_blank">Try Picking online.</a></p>
+        </div>
+    </div>
+</PageLayout>
+
+<style rel="stylesheet">
+    .apps {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .app {
+        margin-top: 2rem;
+    }
+
+    .app p {
+        padding: .5rem 0;
+    }
+</style>

@@ -25,6 +25,17 @@ import ThemeIcon from '@src/components/theme/ThemeIcon.astro'
 </head>
 <body>
 <header>
+    <div>
+        <a href="/">
+            <img src="/84-192.png" alt="84" height="64" width="64"/>
+        </a>
+    </div>
+    <div>
+        <a href="/apps">Apps</a>
+    </div>
+    <div>
+        <a href="/coding">Coding</a>
+    </div>
     <ThemeIcon/>
 </header>
 <main>
@@ -36,8 +47,10 @@ import ThemeIcon from '@src/components/theme/ThemeIcon.astro'
 <style>
     header {
         display: flex;
-        justify-content: center;
+        text-underline-offset: .1rem;
+        justify-content: space-around;
         align-items: center;
+        font-size: 1.5rem;
         height: 6rem;
         background: var(--theme-color-header);
     }
