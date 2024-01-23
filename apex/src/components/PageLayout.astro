@@ -17,16 +17,16 @@ import ThemeIcon from '@src/components/theme/ThemeIcon.astro'
             theme = localStorage.getItem('theme')
         }
         if (!theme) {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'theme'
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
         }
         document.documentElement.classList[theme === 'light' ? 'add' : 'remove']('light')
-        window.localStorage.setItem('theme', theme)
     </script>
 </head>
 <body>
 <header>
     <div>
         <a href="/">
+            <!-- todo use an svg -->
             <img src="/84-192.png" alt="84" height="64" width="64"/>
         </a>
     </div>
