@@ -1,0 +1,34 @@
+{
+    "databases": [
+        "SQL",
+        "CQL",
+        "Cassandra",
+        "ScyllaDB",
+        "Postgres",
+        "Elasticsearch",
+        "Opensearch",
+        "Memgraph",
+        "Qdrant",
+        "Milvus"
+    ],
+    "languages": [
+        "Rust",
+        "Golang",
+        "CSS",
+        "HTML",
+        "Python",
+        "Java",
+        "JavaScript",
+        "TypeScript",
+        "Zig",
+        "C",
+        "C++",
+        "Dart"
+    ],
+    "frontend": [
+        "Flutter",
+        "Svelte"
+    ],
+    "cloud": [
+    ]
+}
