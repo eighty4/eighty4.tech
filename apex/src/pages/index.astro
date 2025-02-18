@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const content = await getCollection('content')
+const projects = await getCollection('projects')
+const indexContent = getIndexContent()
+
+function getIndexContent() {
+  if (import.meta.env.MODE === 'production') {
+    return content.filter(piece => !piece.data.draft)
+  } else {
+    return content
+  }
+}
+
+function getApps() {
+  return projects.filter(project => project.data.type === 'app')
+}
+
+function getDevtools() {
+  return projects.filter(project => project.data.type === 'devtool')
+}
+---
+
+<BaseLayout>
+    <h1>Eighty4.tech</h1>
+    <h2>Projects</h2>
+    <h3>Apps</h3>
+    <ul>
+        {getApps().map(app => (
+            <li>
+                <a href={app.data.website}>{app.data.name}</a>
+            </li>
+        ))}
+    </ul>
+    <h3>Devtools</h3>
+    <ul>
+        {getDevtools().map(app => (
+            <li>
+                <a href={app.data.repository}>{app.data.name}</a>
+            </li>
+        ))}
+    </ul>
+    {!!indexContent.length &&
+        <h2>Writing</h2>
+        <ol>
+            {getIndexContent().slice(0, 10).map(piece => (
+                <li>
+                    <a href={`/content/${piece.id}`}>{piece.data.title}</a>
+                </li>
+            ))}
+        </ol>
+    }
+</BaseLayout>
