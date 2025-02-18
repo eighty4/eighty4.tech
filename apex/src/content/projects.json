@@ -1,0 +1,69 @@
+[
+  {
+    "id": "plunder",
+    "name": "Plunder",
+    "repository": "https://github.com/eighty4/plunder",
+    "type": "devtool",
+    "install": "npm i -g @eighty4/plunder",
+    "technologies": [
+      "playwright",
+      "node",
+      "lightningcss"
+    ]
+  },
+  {
+    "id": "cquill",
+    "name": "CQuill",
+    "repository": "https://github.com/eighty4/cquill",
+    "type": "devtool",
+    "install": "npm i -g @eighty4/cquill",
+    "technologies": [
+      "rust",
+      "cassandra",
+      "scylladb",
+      "cql"
+    ]
+  },
+  {
+    "id": "l3",
+    "name": "L3",
+    "repository": "https://github.com/eighty4/l3",
+    "type": "devtool",
+    "install": "npm i -g @eighty4/cquill",
+    "technologies": [
+      "aws",
+      "lambda",
+      "rust",
+      "node"
+    ]
+  },
+  {
+    "id": "binny.sh",
+    "name": "Binny.sh",
+    "repository": "https://github.com/eighty4/binny.sh",
+    "type": "app",
+    "website": "https://binny.sh",
+    "technologies": []
+  },
+  {
+    "id": "sidelines.dev",
+    "name": "Sidelines.dev",
+    "repository": "https://github.com/eighty4/sidelines.dev",
+    "type": "app",
+    "website": "https://sidelines.dev",
+    "technologies": [
+      "bun",
+      "github"
+    ]
+  },
+  {
+    "id": "picking.pl",
+    "name": "Picking.pl",
+    "repository": "https://github.com/eighty4/picking.pl",
+    "type": "app",
+    "website": "https://picking.pl",
+    "technologies": [
+      "flutter"
+    ]
+  }
+]
