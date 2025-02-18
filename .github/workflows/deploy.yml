@@ -47,6 +47,12 @@ jobs:
       - if: ${{ inputs.dev_build && inputs.release_version }}
         name: check inputs
         run: exit 1
+      - if: ${{ !inputs.dev_build && !inputs.release_version }}
+        name: check inputs
+        run: exit 1
+      - if: ${{ inputs.release_version && !inputs.cloudflare_env }}
+        name: check inputs
+        run: exit 1
       - if: ${{ inputs.dev_build }}
         uses: actions/download-artifact@v4
         with:
