@@ -1,14 +1,11 @@
 name: CI
+run-name: CI deploy to dev env
 
 on:
   push:
-    branches: [ 'main' ]
-    paths:
-      - '.github/workflows/verify.yml'
-      - 'apex/**'
+    branches: ['main']
 
 jobs:
-
   verify:
     uses: ./.github/workflows/verify.yml
 

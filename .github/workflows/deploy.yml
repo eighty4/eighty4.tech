@@ -45,13 +45,13 @@ jobs:
       url: ${{ inputs.cloudflare_env == 'production' && 'https://eighty4.tech' || format('https://{0}.${{ secrets.CLOUDFLARE_PROJECT_NAME }}.pages.dev', inputs.cloudflare_env) }}
     steps:
       - if: ${{ inputs.dev_build && inputs.release_version }}
-        name: check inputs
+        name: deploy dev or release
         run: exit 1
       - if: ${{ !inputs.dev_build && !inputs.release_version }}
-        name: check inputs
+        name: source input
         run: exit 1
       - if: ${{ inputs.release_version && !inputs.cloudflare_env }}
-        name: check inputs
+        name: cloudflare env
         run: exit 1
       - if: ${{ inputs.dev_build }}
         uses: actions/download-artifact@v4
@@ -65,7 +65,7 @@ jobs:
       - run: unzip www.zip -d www
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 23
       - uses: cloudflare/wrangler-action@v3
         name: wrangler pages deploy
         with:
