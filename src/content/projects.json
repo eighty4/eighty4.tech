@@ -1,50 +1,65 @@
 [
   {
-    "id": "plunder",
-    "name": "Plunder",
-    "repository": "https://github.com/eighty4/plunder",
-    "type": "devtool",
-    "install": "npm i -g @eighty4/plunder",
-    "technologies": ["playwright", "node", "lightningcss"]
+    "id": "binny.sh",
+    "name": "Binny.sh",
+    "repository": "https://github.com/eighty4/binny.sh",
+    "category": "app",
+    "website": "https://binny.sh"
   },
   {
     "id": "cquill",
     "name": "CQuill",
     "repository": "https://github.com/eighty4/cquill",
-    "type": "devtool",
-    "install": "npm i -g @eighty4/cquill",
-    "technologies": ["rust", "cassandra", "scylladb", "cql"]
+    "category": "devops"
+  },
+  {
+    "id": "c2",
+    "name": "c2",
+    "repository": "https://github.com/eighty4/c2",
+    "category": "devops"
   },
   {
     "id": "l3",
-    "name": "L3",
+    "name": "l3",
     "repository": "https://github.com/eighty4/l3",
-    "type": "devtool",
-    "install": "npm i -g @eighty4/cquill",
-    "technologies": ["aws", "lambda", "rust", "node"]
+    "category": "devops"
   },
   {
-    "id": "binny.sh",
-    "name": "Binny.sh",
-    "repository": "https://github.com/eighty4/binny.sh",
-    "type": "app",
-    "website": "https://binny.sh",
-    "technologies": []
-  },
-  {
-    "id": "sidelines.dev",
-    "name": "Sidelines.dev",
-    "repository": "https://github.com/eighty4/sidelines.dev",
-    "type": "app",
-    "website": "https://sidelines.dev",
-    "technologies": ["bun", "github"]
+    "id": "maestro",
+    "name": "Maestro",
+    "repository": "https://github.com/eighty4/maestro",
+    "category": "dx"
   },
   {
     "id": "picking.pl",
     "name": "Picking.pl",
     "repository": "https://github.com/eighty4/picking.pl",
-    "type": "app",
-    "website": "https://picking.pl",
-    "technologies": ["flutter"]
+    "category": "app",
+    "website": "https://picking.pl"
+  },
+  {
+    "id": "plunder",
+    "name": "Plunder",
+    "repository": "https://github.com/eighty4/plunder",
+    "category": "webdev"
+  },
+  {
+    "id": "sidelines.dev",
+    "name": "Sidelines.dev",
+    "repository": "https://github.com/eighty4/sidelines.dev",
+    "category": "app",
+    "website": "https://sidelines.dev"
+  },
+  {
+    "id": "testnav.vim",
+    "name": "TestNav.vim",
+    "repository": "https://github.com/eighty4/testnav.vim",
+    "category": "dx"
+  },
+  {
+    "id": "vite-inline",
+    "name": "vite-inline",
+    "repository": "https://github.com/eighty4/vite-plugin-html-inline-sources",
+    "category": "webdev"
   }
 ]

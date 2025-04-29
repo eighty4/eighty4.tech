@@ -1,26 +1,12 @@
 ---
-import { getCollection } from 'astro:content'
+import {getProjects, getRecentWriting } from '../content.api.ts'
 import BaseLayout from '../layouts/BaseLayout.astro'
 
-const content = await getCollection('content')
-const projects = await getCollection('projects')
-const indexContent = getIndexContent()
-
-function getIndexContent() {
-  if (import.meta.env.MODE === 'production') {
-    return content.filter(piece => !piece.data.draft)
-  } else {
-    return content
-  }
-}
-
-function getApps() {
-  return projects.filter(project => project.data.type === 'app')
-}
-
-function getDevtools() {
-  return projects.filter(project => project.data.type === 'devtool')
-}
+const writing = await getRecentWriting()
+const apps = await getProjects('app')
+const devops = await getProjects('devops')
+const dx = await getProjects('dx')
+const webdev = await getProjects('webdev')
 ---
 
 <BaseLayout>
@@ -28,24 +14,40 @@ function getDevtools() {
     <h2>Projects</h2>
     <h3>Apps</h3>
     <ul>
-        {getApps().map(app => (
+        {apps.map(app => (
             <li>
                 <a href={app.data.website}>{app.data.name}</a>
             </li>
         ))}
     </ul>
-    <h3>Devtools</h3>
+    <h3>Devops</h3>
     <ul>
-        {getDevtools().map(app => (
+        {devops.map(app => (
             <li>
-                <a href={app.data.repository}>{app.data.name}</a>
+                <a href={app.data.repository}>{app.data.name || app.data.slug}</a>
             </li>
         ))}
     </ul>
-    {!!indexContent.length &&
+    <h3>Dx</h3>
+    <ul>
+        {dx.map(app => (
+            <li>
+                <a href={app.data.repository}>{app.data.name || app.data.slug}</a>
+            </li>
+        ))}
+    </ul>
+    <h3>Webdev</h3>
+    <ul>
+        {webdev.map(app => (
+            <li>
+                <a href={app.data.repository}>{app.data.name || app.data.id}</a>
+            </li>
+        ))}
+    </ul>
+    {!!writing.length &&
         <h2>Writing</h2>
         <ol>
-            {getIndexContent().slice(0, 10).map(piece => (
+            {writing.map(piece => (
                 <li>
                     <a href={`/content/${piece.id}`}>{piece.data.title}</a>
                 </li>
