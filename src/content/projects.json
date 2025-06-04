@@ -19,6 +19,12 @@
     "category": "devops"
   },
   {
+    "id": "changelog",
+    "name": "Changelog",
+    "repository": "https://github.com/eighty4/changelog",
+    "category": "devops"
+  },
+  {
     "id": "l3",
     "name": "l3",
     "repository": "https://github.com/eighty4/l3",
@@ -29,6 +35,12 @@
     "name": "Maestro",
     "repository": "https://github.com/eighty4/maestro",
     "category": "dx"
+  },
+  {
+    "id": "model-t",
+    "name": "Model-T",
+    "repository": "https://github.com/eighty4/model-t",
+    "category": "devops"
   },
   {
     "id": "picking.pl",

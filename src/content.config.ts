@@ -1,6 +1,6 @@
 import { defineCollection, getCollection, z } from 'astro:content'
 import { file, glob } from 'astro/loaders'
-import {projectCategoryValues} from './content.api.ts'
+import { projectCategoryValues } from './content.api.ts'
 
 const content = defineCollection({
     loader: glob({ pattern: '**/*.mdx', base: './src/content' }),
@@ -23,4 +23,3 @@ const projects = defineCollection({
 })
 
 export const collections = { content, projects }
-
