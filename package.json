@@ -10,13 +10,13 @@
     "preview": "astro preview",
     "astro": "astro"
   },
-  "packageManager": "pnpm@10.11.1",
+  "packageManager": "pnpm@10.15.0",
   "dependencies": {
-    "@astrojs/mdx": "4.3.0",
-    "@fontsource/inter": "^5.2.5",
-    "astro": "^5.8.2"
+    "@astrojs/mdx": "4.3.4",
+    "@fontsource/inter": "^5.2.6",
+    "astro": "^5.13.5"
   },
   "devDependencies": {
-    "prettier": "^3.5.3"
+    "prettier": "^3.6.2"
   }
 }
