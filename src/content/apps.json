@@ -1,0 +1,20 @@
+[
+  {
+    "id": "binny.sh",
+    "name": "Binny.sh",
+    "repository": "https://github.com/eighty4/binny.sh",
+    "website": "https://binny.sh"
+  },
+  {
+    "id": "picking.pl",
+    "name": "Picking.pl",
+    "repository": "https://github.com/eighty4/picking.pl",
+    "website": "https://picking.pl"
+  },
+  {
+    "id": "sidelines.dev",
+    "name": "Sidelines.dev",
+    "repository": "https://github.com/eighty4/sidelines.dev",
+    "website": "https://sidelines.dev"
+  }
+]

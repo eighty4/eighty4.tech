@@ -3,11 +3,11 @@ import { getCollection, render } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 
 export async function getStaticPaths() {
-  const content = await getCollection('content')
-  return content.map(piece => ({
-    params: { slug: piece.id },
-    props: { piece },
-  }))
+    const content = await getCollection('content')
+    return content.map(piece => ({
+        params: { slug: piece.id },
+        props: { piece },
+    }))
 }
 
 const { piece } = Astro.props

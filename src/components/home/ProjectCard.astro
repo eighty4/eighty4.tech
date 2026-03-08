@@ -1,0 +1,52 @@
+---
+import type { Project } from '../../content.api.ts'
+
+const project: Project = Astro.props.project
+---
+
+<div class="project">
+    <a class="title" href={project.data.repository}>
+        {project.data.name}
+        {
+            !!project.data.secondaryName && (
+                <div class="secondary">{project.data.secondaryName}</div>
+            )
+        }
+    </a>
+    <div class="desc">
+        {project.data.description}
+    </div>
+</div>
+
+<style>
+    .project {
+        margin: 2rem;
+    }
+    .title {
+        color: #111;
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        font-size: 1.8rem;
+        gap: 1rem;
+        text-decoration: none;
+        border-bottom: solid 3px transparent;
+
+        &:hover {
+            border-color: #549084;
+        }
+
+        & .secondary {
+            color: #444;
+            font-size: 1.2rem;
+            font-style: italic;
+            text-decoration: none;
+        }
+    }
+    .desc {
+        color: #333;
+        font-size: 1.1rem;
+        font-weight: 100;
+        margin-top: 0.75rem;
+    }
+</style>

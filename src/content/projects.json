@@ -1,35 +1,38 @@
 [
   {
-    "id": "binny.sh",
-    "name": "Binny.sh",
-    "repository": "https://github.com/eighty4/binny.sh",
-    "category": "app",
-    "website": "https://binny.sh"
+    "id": "c2",
+    "name": "c2",
+    "secondaryName": "(Cloud Config)",
+    "repository": "https://github.com/eighty4/c2",
+    "category": "cloud"
   },
+  {
+    "id": "l3",
+    "name": "l3",
+    "secondaryName": "(Lambda, Lambda, Lambda)",
+    "repository": "https://github.com/eighty4/l3",
+    "category": "cloud"
+  },
+
   {
     "id": "cquill",
     "name": "CQuill",
     "repository": "https://github.com/eighty4/cquill",
-    "category": "devops"
-  },
-  {
-    "id": "c2",
-    "name": "c2",
-    "repository": "https://github.com/eighty4/c2",
-    "category": "devops"
+    "category": "cicd"
   },
   {
     "id": "changelog",
     "name": "Changelog",
     "repository": "https://github.com/eighty4/changelog",
-    "category": "devops"
+    "category": "cicd"
   },
   {
-    "id": "l3",
-    "name": "l3",
-    "repository": "https://github.com/eighty4/l3",
-    "category": "devops"
+    "id": "model-t",
+    "name": "Model-T",
+    "repository": "https://github.com/eighty4/model-t",
+    "category": "cicd"
   },
+
   {
     "id": "maestro",
     "name": "Maestro",
@@ -37,41 +40,22 @@
     "category": "dx"
   },
   {
-    "id": "model-t",
-    "name": "Model-T",
-    "repository": "https://github.com/eighty4/model-t",
-    "category": "devops"
-  },
-  {
-    "id": "picking.pl",
-    "name": "Picking.pl",
-    "repository": "https://github.com/eighty4/picking.pl",
-    "category": "app",
-    "website": "https://picking.pl"
-  },
-  {
-    "id": "plunder",
-    "name": "Plunder",
-    "repository": "https://github.com/eighty4/plunder",
-    "category": "webdev"
-  },
-  {
-    "id": "sidelines.dev",
-    "name": "Sidelines.dev",
-    "repository": "https://github.com/eighty4/sidelines.dev",
-    "category": "app",
-    "website": "https://sidelines.dev"
-  },
-  {
     "id": "testnav.vim",
     "name": "TestNav.vim",
     "repository": "https://github.com/eighty4/testnav.vim",
     "category": "dx"
   },
+
   {
-    "id": "vite-inline",
-    "name": "vite-inline",
-    "repository": "https://github.com/eighty4/vite-plugin-html-inline-sources",
+    "id": "dank",
+    "name": "DANK",
+    "repository": "https://github.com/eighty4/dank",
+    "category": "webdev"
+  },
+  {
+    "id": "plunder",
+    "name": "Plunder",
+    "repository": "https://github.com/eighty4/plunder",
     "category": "webdev"
   }
 ]

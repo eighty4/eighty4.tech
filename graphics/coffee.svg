@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="400mm"
+   height="100mm"
+   viewBox="0 0 400 100"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   sodipodi:docname="coffee.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.53"
+     inkscape:rotation="-1"
+     inkscape:cx="766.58228"
+     inkscape:cy="191.70979"
+     inkscape:window-width="1072"
+     inkscape:window-height="892"
+     inkscape:window-x="853"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer3" />
+  <defs
+     id="defs1">
+    <rect
+       x="63.132108"
+       y="103.1671"
+       width="669.81627"
+       height="281.78478"
+       id="rect5" />
+    <rect
+       x="910.02625"
+       y="170.91864"
+       width="223.27209"
+       height="63.132108"
+       id="rect4" />
+    <rect
+       x="110.86614"
+       y="67.751531"
+       width="532.7734"
+       height="204.7944"
+       id="rect3" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#e6ded6;fill-opacity:1;stroke-width:2.76651;stroke-linejoin:round"
+       id="rect1"
+       width="400"
+       height="100"
+       x="0"
+       y="-1.7763568e-15"
+       inkscape:label="bg" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="cup">
+    <ellipse
+       style="fill:#333333;stroke-width:0.694353;stroke-linejoin:round"
+       id="ellipse1"
+       cx="263.85184"
+       cy="80.279625"
+       rx="40"
+       ry="5" />
+    <rect
+       style="fill:#333333;fill-opacity:1;stroke-width:1.32008;stroke-linejoin:round"
+       id="rect2"
+       width="80"
+       height="61.799999"
+       x="223.95233"
+       y="18.05463" />
+    <ellipse
+       style="fill:#cccccc;stroke-width:0.694353;stroke-linejoin:round"
+       id="path1"
+       cx="263.85184"
+       cy="18.217131"
+       rx="40"
+       ry="5" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#333333;stroke-width:10.1044;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path3"
+       cx="303.91684"
+       cy="50.21595"
+       rx="27.154968"
+       ry="16.461195" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.43664783,0,0,0.43664783,215.06358,-12.789998)"
+       id="text4"
+       style="font-size:26.6667px;font-family:'Noto Sans Linear A';-inkscape-font-specification:'Noto Sans Linear A';text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect5);fill:#f2f2f2;fill-opacity:1;stroke:none;stroke-width:105.6;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"><tspan
+         x="63.132812"
+         y="127.49681"
+         id="tspan1">World's
+</tspan><tspan
+         x="63.132812"
+         y="160.89566"
+         id="tspan2">Best
+</tspan><tspan
+         x="63.132812"
+         y="194.29451"
+         id="tspan3">Vibe</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="beans">
+    <ellipse
+       style="fill:#99664d;fill-opacity:1;stroke:none;stroke-width:27.94;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path5"
+       cx="49.296295"
+       cy="47.462959"
+       rx="9.7777777"
+       ry="14.462962" />
+    <ellipse
+       style="fill:#331c0d;fill-opacity:1;stroke:none;stroke-width:27.94;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="ellipse5"
+       cx="85.555557"
+       cy="49.09259"
+       rx="9.7777777"
+       ry="14.462962" />
+    <ellipse
+       style="fill:#261208;fill-opacity:1;stroke:none;stroke-width:27.94;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="ellipse6"
+       cx="121.81482"
+       cy="49.499996"
+       rx="9.7777777"
+       ry="14.462962" />
+  </g>
+</svg>

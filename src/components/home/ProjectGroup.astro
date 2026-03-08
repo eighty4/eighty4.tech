@@ -1,0 +1,154 @@
+---
+import ProjectCard from './ProjectCard.astro'
+import { getProjects, type ProjectCategory } from '../../content.api'
+
+const projectGroup: ProjectCategory = Astro.props.projectGroup
+const projects = await getProjects(projectGroup)
+
+function projectGroupLabel() {
+    switch (projectGroup) {
+        case 'cloud':
+            return 'Cloud'
+        case 'cicd':
+            return 'CICD'
+        case 'dx':
+            return 'Dx'
+        case 'webdev':
+            return 'Webdev'
+        default:
+            throw Error()
+    }
+}
+
+function projectGroupDesc() {
+    switch (projectGroup) {
+        case 'cloud':
+            return 'Shipping to and managing cloud'
+        case 'cicd':
+            return 'All things software development lifecycle'
+        case 'dx':
+            return 'Enhancing developer workflows'
+        case 'webdev':
+            return 'Crafting experiences in the browser'
+    }
+}
+
+function projectGroupBannerSrc() {
+    switch (projectGroup) {
+        case 'cloud':
+            return '/cloud.svg'
+        case 'cicd':
+            return '/cloud.svg'
+        case 'dx':
+            return '/coffee.svg'
+        case 'webdev':
+            return '/cloud.svg'
+    }
+}
+
+function projectGroupBannerAlt() {
+    switch (projectGroup) {
+        case 'cloud':
+            return 'Clouds, clouds, clouds'
+        case 'cicd':
+            return ''
+        case 'dx':
+            return ''
+        case 'webdev':
+            return ''
+    }
+}
+---
+
+<div class="project-group">
+    <div class="project-group-header">
+        <div class="project-group-title">
+            <div class="project-group-label">{projectGroupLabel()}</div>
+            <div class="project-group-desc">{projectGroupDesc()}</div>
+        </div>
+        <img
+            class="project-group-banner-img"
+            width="480"
+            height="120"
+            src={projectGroupBannerSrc()}
+            alt={projectGroupBannerAlt()}
+        />
+    </div>
+    <div class="projects">
+        <ul>
+            {
+                projects.map(project => (
+                    <li>
+                        <ProjectCard project={project} />
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>
+
+<style>
+    .project-group {
+        --pad-left: 2rem;
+        width: 60rem;
+        margin: 0 auto;
+    }
+
+    .project-group + .project-group {
+        margin-top: 2rem;
+    }
+
+    .project-group-header {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        height: 120px;
+        background: #f7f7f7;
+        border-radius: 2rem 0 0 0;
+        border: solid 0 #f0f0f0;
+        border-left-width: 3px;
+        border-top-width: 2px;
+
+        & .project-group-header-outline {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            bottom: 0.5rem;
+            right: 0.5rem;
+        }
+
+        & .project-group-title {
+            flex: 1;
+            align-content: center;
+            padding-left: var(--pad-left);
+
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            justify-content: center;
+
+            & .project-group-label {
+                font-weight: 500;
+                font-size: 2.2rem;
+                letter-spacing: 0.1rem;
+            }
+
+            & .project-group-desc {
+                color: #777;
+                font-weight: 100;
+                font-size: 1.1rem;
+                font-style: italic;
+            }
+        }
+    }
+
+    .project-group-banner-img {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 0%);
+    }
+
+    .projects {
+        border-left: solid 3px transparent;
+        border-image: linear-gradient(to bottom, #f0f0f0, transparent) 1;
+        padding: var(--pad-left);
+    }
+</style>

@@ -29,6 +29,6 @@ fi
 
 # run through all the checks done for ci
 
-pnpm build
+GH_TOKEN=$(gh auth token) pnpm build
 pnpm fmtcheck
 

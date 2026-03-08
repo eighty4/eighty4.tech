@@ -1,6 +1,7 @@
 import { type Config } from 'prettier'
 
 const config: Config = {
+    plugins: ['prettier-plugin-astro'],
     arrowParens: 'avoid',
     semi: false,
     singleQuote: true,
@@ -11,6 +12,12 @@ const config: Config = {
             files: '*.{json,yaml,yml}',
             options: {
                 tabWidth: 2,
+            },
+        },
+        {
+            files: '*.astro',
+            options: {
+                parser: 'astro',
             },
         },
     ],
