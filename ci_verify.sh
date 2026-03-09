@@ -29,6 +29,15 @@ fi
 
 # run through all the checks done for ci
 
+cd apex
+echo "*** verify apex ***"
 GH_TOKEN=$(gh auth token) pnpm build
-pnpm fmtcheck
+cd ..
 
+cd docs
+echo "*** verify docs ***"
+GH_TOKEN=$(gh auth token) pnpm build
+cd ..
+
+echo "*** verify format ***"
+pnpm fmtcheck

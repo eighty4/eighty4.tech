@@ -9,7 +9,7 @@ jobs:
   verify:
     uses: ./.github/workflows/verify.yml
 
-  deploy:
+  deploy-apex:
     needs: verify
     permissions:
       contents: read
@@ -18,4 +18,17 @@ jobs:
     with:
       cloudflare_env: dev
       dev_build: true
+      website: apex
+    secrets: inherit
+
+  deploy-docs:
+    needs: verify
+    permissions:
+      contents: read
+      deployments: write
+    uses: ./.github/workflows/deploy.yml
+    with:
+      cloudflare_env: dev
+      dev_build: true
+      website: docs
     secrets: inherit

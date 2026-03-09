@@ -1,0 +1,35 @@
+name: Build
+run-name: 'Build ${{ inputs.website }} website'
+
+on:
+  workflow_call:
+    inputs:
+      website:
+        type: string
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          case "${{ inputs.website }}" in
+            "apex"|"docs") ;;
+            *) exit 1 ;;
+          esac
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@v4
+      - run: pnpm i
+      - run: pnpm build
+        working-directory: ${{ inputs.website }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: zip -qr ../../${{ inputs.website }}.zip .
+        working-directory: ${{ inputs.website }}/dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.website }}.zip
+          path: ${{ inputs.website }}.zip

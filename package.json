@@ -1,20 +1,10 @@
 {
-  "name": "@eighty4/apex",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "fmt": "prettier --write .",
-    "fmtcheck": "prettier --check .",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
+  "name": "@eighty4.tech/root",
   "packageManager": "pnpm@10.31.0",
-  "dependencies": {
-    "@astrojs/mdx": "^4.3.13",
-    "@fontsource/inter": "^5.2.8",
-    "astro": "^5.18.0"
+  "type": "module",
+  "scripts": {
+    "fmt": "prettier --write .",
+    "fmtcheck": "prettier --check ."
   },
   "devDependencies": {
     "prettier": "^3.8.1",

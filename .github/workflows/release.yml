@@ -14,6 +14,12 @@ on:
           - production
         default: stage
         required: true
+      website:
+        type: choice
+        options:
+          - apex
+          - docs
+        required: true
 
 jobs:
   verify:
@@ -30,9 +36,7 @@ jobs:
       - uses: actions/checkout@v4
       - id: version
         run: |
-          HASH="$(git rev-parse --short HEAD)"
-          DATE="$(git show -s --format=%ci $HASH | cut -c1-10)"
-          VERSION="v$DATE.$HASH"
+          VERSION="${{ inputs.website }}.$(git rev-parse --short HEAD).${{ github.run_number }}"
           echo "tag_name=$VERSION" >> "$GITHUB_OUTPUT"
       - name: tag
         env:
@@ -53,7 +57,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: www.zip
+          name: ${{ inputs.website }}.zip
       - env:
           GH_TOKEN: ${{ github.token }}
           TAG_NAME: ${{ needs.tag.outputs.tag_name }}
@@ -63,7 +67,7 @@ jobs:
             --latest=true \
             --notes "[Adam Scott hires OK Computer era Thom Yorke hair stylist](https://www.youtube.com/shorts/svyC91lHAzM)" \
             --repo eighty4/eighty4.tech \
-            www.zip
+            ${{ inputs.website }}.zip
 
   deploy:
     needs: [release, tag]
@@ -74,4 +78,5 @@ jobs:
     with:
       cloudflare_env: ${{ inputs.cloudflare_env }}
       release_version: ${{ needs.tag.outputs.tag_name }}
+      website: ${{ inputs.website }}
     secrets: inherit

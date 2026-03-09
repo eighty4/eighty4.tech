@@ -1,7 +1,7 @@
 name: Deploy
 run-name: Deploy ${{ inputs.release_version || inputs.git_sha }} to ${{ inputs.cloudflare_env }}
 
-concurrency: deploy-${{ inputs.cloudflare_env }}
+concurrency: deploy-${{ inputs.website }}-${{ inputs.cloudflare_env }}
 
 on:
   workflow_call:
@@ -18,6 +18,9 @@ on:
         description: Release tag / version in GitHub Releases
         type: string
         required: false
+      website:
+        type: string
+        required: true
   workflow_dispatch:
     inputs:
       cloudflare_env:
@@ -32,18 +35,35 @@ on:
         description: Release tag / version in GitHub Releases
         type: string
         required: true
+      website:
+        type: choice
+        options:
+          - apex
+          - docs
+        required: true
 
 permissions:
   contents: read
   deployments: write
 
+env:
+  DOMAINS: '{"apex": "https://eighty4.tech", "docs": "https://docs.eighty4.tech"}'
+  PROJECTS: '{"apex": "${{ vars.APEX_CLOUDFLARE_PROJECT_NAME }}", "docs": "${{ vars.DOCS_CLOUDFLARE_PROJECT_NAME }}"}'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      PROJECT:
     environment:
-      name: ${{ inputs.cloudflare_env }}
-      url: ${{ inputs.cloudflare_env == 'production' && 'https://eighty4.tech' || format('https://{0}.{1}.pages.dev', inputs.cloudflare_env, vars.CLOUDFLARE_PROJECT_NAME) }}
+      name: ${{ inputs.website }}-${{ inputs.cloudflare_env }}
+      url: ${{ inputs.cloudflare_env == 'production' && fromJson(env.DOMAINS)[inputs.website] || format('https://{0}.{1}.pages.dev', inputs.cloudflare_env, fromJson(env.PROJECTS)[inputs.website]) }}
     steps:
+      - run: |
+          case "${{ inputs.website }}" in
+            "apex"|"docs") ;;
+            *) exit 1 ;;
+          esac
       - if: ${{ inputs.dev_build && inputs.release_version }}
         name: deploy dev or release
         run: exit 1
@@ -51,26 +71,25 @@ jobs:
         name: source input
         run: exit 1
       - if: ${{ inputs.release_version && !inputs.cloudflare_env }}
-        name: cloudflare env
+        name: cloudflare envs
         run: exit 1
       - if: ${{ inputs.dev_build }}
         uses: actions/download-artifact@v4
         with:
-          name: www.zip
+          name: ${{ inputs.website }}.zip
       - if: ${{ inputs.release_version }}
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ inputs.release_version }}
-        run: gh release download "$TAG" -p www.zip --repo eighty4/eighty4.tech
-      - run: unzip www.zip -d www
+        run: gh release download "$TAG" -p ${{ inputs.website }}.zip --repo eighty4/eighty4.tech
+      - run: unzip ${{ inputs.website }}.zip -d www
       - uses: actions/setup-node@v4
         with:
-          node-version: 23
+          node-version: 24
       - uses: cloudflare/wrangler-action@v3
         name: wrangler pages deploy
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy www --project-name ${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch "${{ inputs.cloudflare_env }}"
-          gitHubToken: ${{ github.token }}
+          command: pages deploy www --project-name ${{ fromJson(env.PROJECTS)[inputs.website] }} --branch "${{ inputs.cloudflare_env }}"
           wranglerVersion: latest
