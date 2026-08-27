@@ -6,6 +6,9 @@ on:
     branches: ['*']
   workflow_call:
 
+env:
+  RUNTIME: node@26
+
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -29,10 +32,8 @@ jobs:
   fmtcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v2
         with:
-          node-version: 24
-      - uses: pnpm/action-setup@v4
-      - run: pnpm i
+          runtime: ${{ env.RUNTIME }}
       - run: pnpm fmtcheck

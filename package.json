@@ -1,13 +1,19 @@
 {
   "name": "@eighty4.tech/root",
-  "packageManager": "pnpm@10.31.0",
   "type": "module",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.24.0",
+      "onFail": "download"
+    }
+  },
   "scripts": {
     "fmt": "prettier --write .",
     "fmtcheck": "prettier --check ."
   },
   "devDependencies": {
-    "prettier": "^3.8.1",
+    "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1"
   }
 }

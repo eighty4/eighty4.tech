@@ -48,13 +48,12 @@ permissions:
 
 env:
   DOMAINS: '{"apex": "https://eighty4.tech", "docs": "https://docs.eighty4.tech"}'
+  NODE_VERSION: 26
   PROJECTS: '{"apex": "${{ vars.APEX_CLOUDFLARE_PROJECT_NAME }}", "docs": "${{ vars.DOCS_CLOUDFLARE_PROJECT_NAME }}"}'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      PROJECT:
     environment:
       name: ${{ inputs.website }}-${{ inputs.cloudflare_env }}
       url: ${{ inputs.cloudflare_env == 'production' && fromJson(env.DOMAINS)[inputs.website] || format('https://{0}.{1}.pages.dev', inputs.cloudflare_env, fromJson(env.PROJECTS)[inputs.website]) }}
@@ -74,7 +73,7 @@ jobs:
         name: cloudflare envs
         run: exit 1
       - if: ${{ inputs.dev_build }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: ${{ inputs.website }}.zip
       - if: ${{ inputs.release_version }}
@@ -85,8 +84,8 @@ jobs:
       - run: unzip ${{ inputs.website }}.zip -d www
       - uses: actions/setup-node@v4
         with:
-          node-version: 24
-      - uses: cloudflare/wrangler-action@v3
+          node-version: ${{ env.NODE_VERSION }}
+      - uses: cloudflare/wrangler-action@v4
         name: wrangler pages deploy
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
