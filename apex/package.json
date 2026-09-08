@@ -1,5 +1,6 @@
 {
-  "name": "@eighty4.tech/apex",
+  "name": "@eighty4/www-apex",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -8,9 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^7.0.8",
+    "@astrojs/mdx": "^8.0.0",
+    "@eighty4/www-astro-content": "workspace:*",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
-    "astro": "^7.2.8",
+    "astro": "^7.3.1",
     "typescript": "^7.0.2"
   }
 }

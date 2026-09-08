@@ -1,0 +1,74 @@
+[
+  {
+    "id": "binny.sh",
+    "description": "Install scripts for GitHub release binaries",
+    "homepage": "https://binny.sh",
+    "url": "https://github.com/eighty4/binny.sh"
+  },
+  {
+    "id": "c2",
+    "description": "Cross-platform developer tooling for cloud-init user data",
+    "homepage": null,
+    "url": "https://github.com/eighty4/c2"
+  },
+  {
+    "id": "changelog",
+    "description": "CICD tasks for CHANGELOG.md",
+    "homepage": null,
+    "url": "https://github.com/eighty4/changelog"
+  },
+  {
+    "id": "cquill",
+    "description": "Versioned CQL migrations for Cassandra and ScyllaDB",
+    "homepage": null,
+    "url": "https://github.com/eighty4/cquill"
+  },
+  {
+    "id": "dank",
+    "description": "Multi-page development system for CDN-deployed websites",
+    "homepage": null,
+    "url": "https://github.com/eighty4/dank"
+  },
+  {
+    "id": "l3",
+    "description": "Developer and DevOps tooling for AWS Lambda",
+    "homepage": null,
+    "url": "https://github.com/eighty4/l3"
+  },
+  {
+    "id": "maestro",
+    "description": "Stylish developer workflows",
+    "homepage": null,
+    "url": "https://github.com/eighty4/maestro"
+  },
+  {
+    "id": "model-t",
+    "description": "Validating workflows for GitHub Actions",
+    "homepage": null,
+    "url": "https://github.com/eighty4/model-t"
+  },
+  {
+    "id": "picking.pl",
+    "description": "For learning bluegrass banjo and guitar",
+    "homepage": "https://picking.pl",
+    "url": "https://github.com/eighty4/picking.pl"
+  },
+  {
+    "id": "plunder",
+    "description": "Webpage QA tooling powered by Playwright",
+    "homepage": null,
+    "url": "https://github.com/eighty4/plunder"
+  },
+  {
+    "id": "sidelines.dev",
+    "description": "Keep open-source projects in peak shape",
+    "homepage": null,
+    "url": "https://github.com/eighty4/sidelines.dev"
+  },
+  {
+    "id": "testnav.vim",
+    "description": "Simple keymap to switch between a source file and its test",
+    "homepage": null,
+    "url": "https://github.com/eighty4/testnav.vim"
+  }
+]

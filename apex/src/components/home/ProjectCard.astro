@@ -1,48 +1,39 @@
 ---
-import type { Project } from '../../content.api.ts'
+import { type CollectionEntry, getEntry } from 'astro:content'
 
-const project: Project = Astro.props.project
+type Props = {
+    project: CollectionEntry<'projects'>
+}
+
+const { project } = Astro.props
+const repo = await getEntry(project.data.repo)
 ---
 
 <div class="project">
-    <a class="title" href={project.data.repository}>
-        {project.data.name}
-        {
-            !!project.data.secondaryName && (
-                <div class="secondary">{project.data.secondaryName}</div>
-            )
-        }
-    </a>
+    <h3>
+        <a class="title" href={repo.data.url}>
+            {project.data.name ?? project.data.id}
+        </a>
+    </h3>
     <div class="desc">
-        {project.data.description}
+        {repo.data.description}
     </div>
 </div>
 
 <style>
-    .project {
-        margin: 2rem;
-    }
     .title {
-        color: #111;
-        display: flex;
-        width: fit-content;
-        align-items: center;
-        font-size: 1.8rem;
-        gap: 1rem;
+        font-size: 1.5rem;
+        color: var(--color-sky-dark);
         text-decoration: none;
-        border-bottom: solid 3px transparent;
-
         &:hover {
-            border-color: #549084;
+            color: var(--color-sky-light);
         }
 
-        & .secondary {
-            color: #444;
-            font-size: 1.2rem;
-            font-style: italic;
-            text-decoration: none;
+        &:active {
+            color: var(--color-green);
         }
     }
+
     .desc {
         color: #333;
         font-size: 1.1rem;

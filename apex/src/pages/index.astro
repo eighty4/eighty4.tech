@@ -1,44 +1,233 @@
 ---
-import ProjectGroup from '../components/home/ProjectGroup.astro'
-import { getRecentWriting } from '../content.api.ts'
+import { Image } from 'astro:assets'
+import cloudsSvg from '../assets/clouds.svg'
+import ghLogoSvg from '../assets/github.svg'
+import FooterBranding from '../components/home/FooterBranding.astro'
+import ProjectList from '../components/home/ProjectList.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
+import { getProjects, getRecentWriting } from '../content.ts'
 
+/* todo strip unused glyphs in woff2 font and only ship `eighty4.tech` */
+import '@fontsource/ibm-plex-mono/700.css'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/600.css'
+import '@fontsource/inter/700.css'
+import '@fontsource/inter/800.css'
+import '@fontsource/inter/900.css'
+
+const { apps: products, other: projects } = await getProjects()
 const writing = await getRecentWriting(3)
 ---
 
 <BaseLayout>
-    <div id="projects-header">
-        <h2>Open source coding</h2>
-        <p>My personal everyday tools are curated here.</p>
-        <p>
-            These libraries and tools are thoughtfully crafted with best
-            principles to solve essential workflows.
-        </p>
-    </div>
-    <ProjectGroup projectGroup="cloud" />
-    <ProjectGroup projectGroup="cicd" />
-    <ProjectGroup projectGroup="dx" />
-    <ProjectGroup projectGroup="webdev" />
+    <header id="sticky">
+        <nav>
+            <h1>eighty4<span class="dot">.</span>tech</h1>
+            <div>
+                <a href="https://github.com/eighty4">
+                    <Image
+                        src={ghLogoSvg}
+                        width="28"
+                        height="28"
+                        alt="GitHub log"
+                    />
+                </a>
+            </div>
+        </nav>
+        <img
+            id="clouds"
+            src={cloudsSvg.src}
+            width="480"
+            height="120"
+            alt="White clouds & blue sky"
+        />
+    </header>
+    <main>
+        {
+            writing.content.length > 0 && (
+                <section>
+                    <header>
+                        <h2>Writing</h2>
+                    </header>
+                    {writing.content.map(article => {
+                        return (
+                            <div>
+                                <a href={`/writing/content/${article.id}`}>
+                                    {article.data.title}
+                                </a>
+                            </div>
+                        )
+                    })}
+                    {writing.hasMore && (
+                        <div>
+                            <a href="/writing/index/1">Read more</a>
+                        </div>
+                    )}
+                </section>
+            )
+        }
+        <section>
+            <header>
+                <h2>Products</h2>
+                <p>
+                    These apps help me with software development and music
+                    education. Check 'em out.
+                </p>
+            </header>
+            <ProjectList projects={products} />
+        </section>
+        <section>
+            <header>
+                <h2>Open source</h2>
+                <p>My everyday tools are curated here.</p>
+                <p>
+                    Each project is thoughtfully crafted with best principles
+                    and ready to solve essential workflows.
+                </p>
+            </header>
+            <ProjectList projects={projects} />
+        </section>
+    </main>
+    <footer>
+        <FooterBranding />
+    </footer>
 </BaseLayout>
 
-<style>
+<style is:global>
     :root {
-        --surface-bg: #e0e1e4;
+        --color-pink: #ff6084;
+        --color-green: #89f336;
+        --color-sky-light: #73beff;
+        --color-sky-dark: #1494ec;
+        --content-inset: 1rem;
     }
 
-    #projects-header {
-        width: 40rem;
+    html {
+        font-family: 'Inter', sans-serif;
+    }
+
+    a {
+        color: var(--color-sky-dark);
+        &:hover {
+            color: var(--color-sky-light);
+        }
+        &:active {
+            color: var(--color-green);
+        }
+    }
+</style>
+
+<style>
+    @property --cloud-y> {
+        syntax: '<percentage>';
+        inherits: false;
+        initial-value: 0%;
+    }
+
+    @media (width > 700px) {
+        :root {
+            --desktop-width: 600px;
+            --desktop-gh-logo-size: 3rem;
+            --desktop-header-gap: 2rem;
+            --desktop-cloud-radius: 8px;
+        }
+    }
+
+    #sticky,
+    main,
+    footer {
+        width: var(--desktop-width, 100%);
         margin: 0 auto;
-        margin-bottom: 2rem;
+    }
 
-        & h2 {
-            font-size: 2.2rem;
-            margin-bottom: 2rem;
-        }
+    h1 {
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 700;
 
-        & p {
-            color: #222;
-            line-height: 1.4rem;
+        & .dot {
+            color: var(--color-green);
         }
+    }
+
+    h2 {
+        color: #222;
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: 0.03rem;
+    }
+
+    section header {
+        margin-bottom: 1.5rem;
+    }
+
+    section + section {
+        margin-top: 4rem;
+    }
+
+    #sticky {
+        anchor-name: --nav-header;
+        position: sticky;
+        top: 0;
+        padding-top: var(--desktop-header-gap, 1rem);
+        margin-bottom: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: var(--desktop-header-gap, 1rem);
+        background: #fff;
+        z-index: 420;
+
+        & nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 1rem;
+            & h1 {
+                flex: 1;
+            }
+            & a img {
+                --size: var(--desktop-gh-logo-size, 2rem);
+                display: block;
+                width: var(--size);
+                height: var(--size);
+            }
+        }
+    }
+
+    #clouds {
+        display: block;
+        box-shadow:
+            inset 0 0 0 0.5px #ffffffb3,
+            0 0 0 0.5px #1111111a,
+            0 1px 2px #0000001a;
+        border-radius: var(--desktop-cloud-radius, 0);
+        object-fit: cover;
+        height: 3rem;
+        width: 100%;
+        object-position: 100% var(--cloud-y);
+        animation: cloud-pan ease-in-out both;
+        animation-timeline: scroll(y root);
+    }
+
+    @keyframes cloud-pan {
+        from {
+            object-position: 100% 0%;
+        }
+        to {
+            object-position: 100% 100%;
+        }
+    }
+
+    main {
+        box-sizing: border-box;
+        color: #333;
+        line-height: 1.4rem;
+        padding: var(--content-inset);
+    }
+
+    footer {
+        height: 50vh;
+        display: grid;
+        align-items: center;
+        justify-content: center;
     }
 </style>

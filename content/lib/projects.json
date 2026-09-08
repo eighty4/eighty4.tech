@@ -1,0 +1,73 @@
+[
+  {
+    "id": "binny.sh",
+    "repo": "binny.sh",
+    "name": "Binny.sh",
+    "categories": ["app"]
+  },
+  {
+    "id": "picking.pl",
+    "repo": "picking.pl",
+    "name": "Picking.pl",
+    "categories": ["app"]
+  },
+  {
+    "id": "sidelines.dev",
+    "repo": "sidelines.dev",
+    "name": "Sidelines.dev",
+    "categories": ["app"]
+  },
+
+  {
+    "id": "c2",
+    "repo": "c2",
+    "categories": ["cicd", "cloud"]
+  },
+  {
+    "id": "l3",
+    "repo": "l3",
+    "name": "λλλ",
+    "categories": ["cicd", "cloud"]
+  },
+
+  {
+    "id": "cquill",
+    "repo": "cquill",
+    "repository": "https://github.com/eighty4/cquill",
+    "categories": ["cicd", "data"]
+  },
+  {
+    "id": "changelog",
+    "repo": "changelog",
+    "categories": ["cicd"]
+  },
+  {
+    "id": "model-t",
+    "repo": "model-t",
+    "categories": ["cicd"]
+  },
+
+  {
+    "id": "maestro",
+    "repo": "maestro",
+    "categories": ["dx"]
+  },
+  {
+    "id": "testnav.vim",
+    "repo": "testnav.vim",
+    "name": "TestNav.vim",
+    "categories": ["dx"]
+  },
+
+  {
+    "id": "dank",
+    "repo": "dank",
+    "name": "DANK",
+    "categories": ["webdev"]
+  },
+  {
+    "id": "plunder",
+    "repo": "plunder",
+    "categories": ["webdev"]
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "changelog",
+    "sites": [
+      {
+        "version": "0.0.8"
+      }
+    ]
+  },
+  {
+    "id": "cquill",
+    "sites": [
+      {
+        "version": "0.0.9"
+      }
+    ]
+  },
+  {
+    "id": "c2",
+    "sites": [
+      {
+        "version": "0.0.5"
+      }
+    ]
+  },
+  {
+    "id": "plunder",
+    "sites": [
+      {
+        "version": "0.0.8"
+      }
+    ]
+  }
+]

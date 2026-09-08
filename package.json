@@ -1,10 +1,10 @@
 {
-  "name": "@eighty4.tech/root",
+  "name": "@eighty4/www-root",
   "type": "module",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "11.24.0",
+      "version": "12.3.4",
       "onFail": "download"
     }
   },

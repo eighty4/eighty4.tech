@@ -1,9 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content'
-import BaseLayout from '../../layouts/BaseLayout.astro'
+import { render } from 'astro:content'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import { getWriting } from '../../../content.ts'
 
 export async function getStaticPaths() {
-    const content = await getCollection('content')
+    const content = await getWriting()
     return content.map(piece => ({
         params: { slug: piece.id },
         props: { piece },

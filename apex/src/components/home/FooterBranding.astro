@@ -1,0 +1,62 @@
+<div class="container">
+    <h2>An <span>eighty4.tech</span> page</h2>
+    <div class="extra-extra">
+        <div class="at4-pronunciations">
+            <span>Pronounced</span>
+            <ul>
+                <li>A — T — 4 — tech</li>
+                <li>/ˈeɪ/, /ə/ /ˈti/ /ˈfɔɹ/, /fɝ/, /fɹɝ/ /ˈtɛk/</li>
+            </ul>
+        </div>
+        <div class="built-tough">
+            <span>Built with <a href="https://astro.build">Astro</a></span>
+            <span
+                >Running on <a href="https://cloudflare.com">Cloudflare</a
+                ></span
+            >
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        & h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            & span {
+                text-decoration: none;
+                letter-spacing: 0.05rem;
+                color: var(--color-sky-dark);
+            }
+        }
+        & .extra-extra {
+            margin: 1.28rem auto;
+            font-size: 0.8rem;
+            width: fit-content;
+
+            & .at4-pronunciations {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 0.84rem;
+                & ul {
+                    display: flex;
+                    flex-direction: column;
+                    list-style: none;
+                }
+            }
+
+            & .built-tough {
+                & span {
+                    display: block;
+                    margin-top: 1.28rem;
+                    & a {
+                        font-weight: 600;
+                        letter-spacing: 0.05rem;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+</style>
