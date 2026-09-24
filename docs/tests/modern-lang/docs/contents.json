@@ -1,0 +1,16 @@
+{
+  "id": "modern-lang",
+  "sections": [
+    {
+      "title": "Quips for daily use",
+      "slug": "quips",
+      "pages": [
+        {
+          "title": "Mook",
+          "slug": "mook",
+          "src": "./mook.md"
+        }
+      ]
+    }
+  ]
+}

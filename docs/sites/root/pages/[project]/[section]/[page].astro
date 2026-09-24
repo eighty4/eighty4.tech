@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { getCollection } from 'astro:content'
+import ProjectDocs from '#pages/ProjectDocs.astro'
+
+export const getStaticPaths = (async () =>
+    (await getCollection('nav')).flatMap(nav =>
+        nav.data.sections.flatMap(section =>
+            section.pages.flatMap(page => ({
+                params: {
+                    project: nav.id,
+                    section: section.slug,
+                    page: page.slug,
+                },
+                props: {
+                    src: page.src,
+                    title: page.title,
+                },
+            })),
+        ),
+    )) satisfies GetStaticPaths
+---
+
+<ProjectDocs
+    project={Astro.params.project}
+    src={Astro.props.src}
+    title={Astro.props.title}
+/>

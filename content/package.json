@@ -3,12 +3,14 @@
   "private": true,
   "type": "module",
   "exports": "./lib/content.ts",
-  "scripts": {},
+  "scripts": {
+    "typecheck": "tsc"
+  },
   "dependencies": {
-    "astro": "^7.3.1",
-    "typescript": "^7.0.2"
+    "astro": "catalog:"
   },
   "devDependencies": {
-    "@types/node": "^26.5.0"
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
   }
 }

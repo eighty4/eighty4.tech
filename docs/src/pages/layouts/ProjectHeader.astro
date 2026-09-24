@@ -1,0 +1,32 @@
+---
+import ThemeToggle from './ThemeToggle.astro'
+
+type Props = {
+    project: string
+}
+---
+
+<header>
+    <h1>{Astro.props.project}</h1>
+    <ThemeToggle />
+</header>
+
+<style>
+    header {
+        --nav-aligned-padding: calc(var(--nav-margin) + var(--nav-padding));
+        box-sizing: border-box;
+        background: var(--theme-bg);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        padding: 0 var(--nav-aligned-padding);
+        display: flex;
+        align-items: center;
+    }
+
+    h1 {
+        flex: 1;
+    }
+</style>

@@ -1,0 +1,20 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { getCollection } from 'astro:content'
+import ProjectLanding from '#pages/ProjectLanding.astro'
+
+export const getStaticPaths = (async () => {
+    const sites = await getCollection('sites')
+    return sites
+        .filter(site => !site.data.inactive)
+        .map(site => {
+            return {
+                params: {
+                    project: site.data.id,
+                },
+            }
+        })
+}) satisfies GetStaticPaths
+---
+
+<ProjectLanding project={Astro.params.project} />

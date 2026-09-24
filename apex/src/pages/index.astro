@@ -5,7 +5,8 @@ import ghLogoSvg from '../assets/github.svg'
 import FooterBranding from '../components/home/FooterBranding.astro'
 import ProjectList from '../components/home/ProjectList.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
-import { getProjects, getRecentWriting } from '../content.ts'
+import { getProjects } from '../projects.ts'
+import { getRecentWriting } from '../writing.ts'
 
 /* todo strip unused glyphs in woff2 font and only ship `eighty4.tech` */
 import '@fontsource/ibm-plex-mono/700.css'
@@ -15,14 +16,16 @@ import '@fontsource/inter/700.css'
 import '@fontsource/inter/800.css'
 import '@fontsource/inter/900.css'
 
-const { apps: products, other: projects } = await getProjects()
+const projects = await getProjects()
 const writing = await getRecentWriting(3)
 ---
 
 <BaseLayout>
     <header id="sticky">
         <nav>
-            <h1>eighty4<span class="dot">.</span>tech</h1>
+            <h1>
+                eighty4<span class="dot">.</span>tech
+            </h1>
             <div>
                 <a href="https://github.com/eighty4">
                     <Image
@@ -43,29 +46,27 @@ const writing = await getRecentWriting(3)
         />
     </header>
     <main>
-        {
-            writing.content.length > 0 && (
-                <section>
-                    <header>
-                        <h2>Writing</h2>
-                    </header>
-                    {writing.content.map(article => {
-                        return (
-                            <div>
-                                <a href={`/writing/content/${article.id}`}>
-                                    {article.data.title}
-                                </a>
-                            </div>
-                        )
-                    })}
-                    {writing.hasMore && (
+        {writing.content.length > 0 && (
+            <section>
+                <header>
+                    <h2>Writing</h2>
+                </header>
+                {writing.content.map(article => {
+                    return (
                         <div>
-                            <a href="/writing/index/1">Read more</a>
+                            <a href={`/writing/content/${article.id}`}>
+                                {article.data.title}
+                            </a>
                         </div>
-                    )}
-                </section>
-            )
-        }
+                    )
+                })}
+                {writing.hasMore && (
+                    <div>
+                        <a href="/writing/index/1">Read more</a>
+                    </div>
+                )}
+            </section>
+        )}
         <section>
             <header>
                 <h2>Products</h2>
@@ -74,7 +75,7 @@ const writing = await getRecentWriting(3)
                     education. Check 'em out.
                 </p>
             </header>
-            <ProjectList projects={products} />
+            <ProjectList projects={projects.apps} />
         </section>
         <section>
             <header>
@@ -85,7 +86,7 @@ const writing = await getRecentWriting(3)
                     and ready to solve essential workflows.
                 </p>
             </header>
-            <ProjectList projects={projects} />
+            <ProjectList projects={projects.other} />
         </section>
     </main>
     <footer>
@@ -225,7 +226,7 @@ const writing = await getRecentWriting(3)
     }
 
     footer {
-        height: 50vh;
+        height: 100vh;
         display: grid;
         align-items: center;
         justify-content: center;

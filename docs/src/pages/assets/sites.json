@@ -1,7 +1,8 @@
 [
   {
+    "inactive": true,
     "id": "changelog",
-    "sites": [
+    "versions": [
       {
         "version": "0.0.8"
       }
@@ -9,23 +10,25 @@
   },
   {
     "id": "cquill",
-    "sites": [
+    "versions": [
       {
         "version": "0.0.9"
       }
     ]
   },
   {
+    "inactive": true,
     "id": "c2",
-    "sites": [
+    "versions": [
       {
         "version": "0.0.5"
       }
     ]
   },
   {
+    "inactive": true,
     "id": "plunder",
-    "sites": [
+    "versions": [
       {
         "version": "0.0.8"
       }

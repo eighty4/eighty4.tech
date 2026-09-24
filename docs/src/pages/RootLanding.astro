@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from './layouts/BaseLayout.astro'
+
+const sites = await getCollection('sites')
+const projects = sites.filter(site => !site.data.inactive).map(site => site.id)
+---
+
+<Layout>
+    <p>Stand in the place where you are</p>
+    <p>
+        Now pick an <a href="https://eighty4.tech">eighty4</a> project to read
+        about:
+    </p>
+    <ul>
+        {projects.map(project => (
+            <li>
+                <a href={`/${project}`}>{project}</a>
+            </li>
+        ))}
+    </ul>
+</Layout>

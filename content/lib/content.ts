@@ -1,7 +1,13 @@
 import { join } from 'node:path'
-import { defineCollection, reference } from 'astro:content'
+import { reference } from 'astro:content'
+import { defineCollection } from 'astro/content/config'
 import { file } from 'astro/loaders'
 import z from 'astro/zod'
+import { REPO_NAME } from './patterns.ts'
+
+export { defineDocsNavCollection } from './docs/nav.ts'
+export { defineDocsPagesCollection } from './docs/pages.ts'
+export { defineDocsSitesCollection } from './docs/sites.ts'
 
 export const projectCategoryValues = [
     'app',
@@ -14,39 +20,26 @@ export const projectCategoryValues = [
 
 export type ProjectCategory = (typeof projectCategoryValues)[number]
 
-const REPO_NAME = z.string().regex(/[a-z][a-z0-9_.\-]/)
+export function defineProjectsCollection() {
+    return defineCollection({
+        loader: file(join(import.meta.dirname, 'projects.json')),
+        schema: z.object({
+            id: REPO_NAME,
+            name: z.string().optional(),
+            categories: z.array(z.enum(projectCategoryValues)),
+            repo: reference('repos'),
+        }),
+    })
+}
 
-export const projects = defineCollection({
-    loader: file(join(import.meta.dirname, 'projects.json')),
-    schema: z.object({
-        id: REPO_NAME,
-        name: z.string().optional(),
-        categories: z.array(z.enum(projectCategoryValues)),
-        repo: reference('repos'),
-    }),
-})
-
-export const repos = defineCollection({
-    loader: file(join(import.meta.dirname, 'repos.json')),
-    schema: z.object({
-        id: REPO_NAME,
-        description: z.string().nullable(),
-        url: z.url(),
-        homepage: z.url().nullable(),
-    }),
-})
-
-// const SEMVER_SPEC = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
-const SEMVER_MMP = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/
-
-export const sites = defineCollection({
-    loader: file(join(import.meta.dirname, 'sites.json')),
-    schema: z.object({
-        id: REPO_NAME,
-        sites: z.array(
-            z.object({
-                version: z.string().regex(SEMVER_MMP),
-            }),
-        ),
-    }),
-})
+export function defineReposCollection() {
+    return defineCollection({
+        loader: file(join(import.meta.dirname, 'repos.json')),
+        schema: z.object({
+            id: REPO_NAME,
+            description: z.string().nullable(),
+            url: z.url(),
+            homepage: z.url().nullable(),
+        }),
+    })
+}

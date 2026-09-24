@@ -1,0 +1,114 @@
+---
+type Props = {
+    subtitle?: string
+}
+
+const subtitlePrefix = Astro.props.subtitle ? Astro.props.subtitle + ' : ' : ''
+const subtitle = subtitlePrefix + 'eighty4'
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <script is:inline>
+            const theme = sessionStorage.getItem('at4.theme')
+            if (theme === 'light' || theme === 'dark') {
+                document.documentElement.dataset.theme = theme
+            }
+        </script>
+        <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+        <meta name="viewport" content="width=device-width" />
+        <title>{subtitle}</title>
+    </head>
+    <body>
+        <slot />
+    </body>
+</html>
+
+<style is:global>
+    :root {
+        color-scheme: light dark;
+        --color-pink: #ff6084;
+        --color-green: #89f336;
+        --color-sky-light: #73beff;
+        --color-sky-dark: #1494ec;
+        --content-inset: 1rem;
+
+        --theme-light-bg: #eee;
+        --theme-light-text: #111;
+        --theme-light-nav-track-bg: #99999922;
+        --theme-light-nav-track-fg: var(--color-pink);
+        --theme-light-nav-border: #aaaaaaaa;
+
+        --theme-dark-bg: #16161c;
+        --theme-dark-text: #ddd;
+        --theme-dark-nav-track-bg: #99999914;
+        --theme-dark-nav-track-fg: var(--color-pink);
+        --theme-dark-nav-border: #aaaaaa44;
+
+        --theme-bg: light-dark(var(--theme-light-bg), var(--theme-dark-bg));
+        --theme-text: light-dark(
+            var(--theme-light-text),
+            var(--theme-dark-text)
+        );
+        --theme-nav-track-bg: light-dark(
+            var(--theme-light-nav-track-bg),
+            var(--theme-dark-nav-track-bg)
+        );
+        --theme-nav-track-fg: light-dark(
+            var(--theme-light-nav-track-fg),
+            var(--theme-dark-nav-track-fg)
+        );
+        --theme-nav-border: light-dark(
+            var(--theme-light-nav-border),
+            var(--theme-dark-nav-border)
+        );
+    }
+
+    html[data-theme='light'] {
+        --theme-bg: var(--theme-light-bg);
+        --theme-text: var(--theme-light-text);
+        --theme-nav-track-bg: var(--theme-light-nav-track-bg);
+        --theme-nav-track-fg: var(--theme-light-nav-track-fg);
+        --theme-nav-border: var(--theme-light-nav-border);
+    }
+
+    html[data-theme='dark'] {
+        --theme-bg: var(--theme-dark-bg);
+        --theme-text: var(--theme-dark-text);
+        --theme-nav-track-bg: var(--theme-dark-nav-track-bg);
+        --theme-nav-track-fg: var(--theme-dark-nav-track-fg);
+        --theme-nav-border: var(--theme-dark-nav-border);
+    }
+
+    html {
+        color: var(--theme-text);
+        background: var(--theme-bg);
+        font-family: monospace;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    ol,
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        list-style-type: none;
+    }
+    a {
+        color: var(--color-sky-dark);
+        &:hover {
+            color: var(--color-sky-light);
+        }
+        &:active {
+            color: var(--color-green);
+        }
+    }
+</style>

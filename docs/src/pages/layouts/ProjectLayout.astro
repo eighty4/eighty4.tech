@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import Layout from './BaseLayout.astro'
+import ProjectNav from './ProjectNav.astro'
+import ProjectHeader from './ProjectHeader.astro'
+
+type Props = {
+    project: string
+    sections: CollectionEntry<'nav'>['data']['sections']
+    subtitle?: string
+}
+
+const { project, sections, subtitle } = Astro.props
+---
+
+<Layout subtitle={subtitle ? `${subtitle} : ${project}` : project}>
+    <ProjectHeader {project} />
+    <aside>
+        <ProjectNav {project} {sections} />
+    </aside>
+    <main>
+        <slot />
+    </main>
+    <footer></footer>
+</Layout>
+
+<style>
+    :root {
+        --header-height: 4rem;
+        --nav-width: 24rem;
+        --nav-margin: 1rem;
+        --nav-padding: 1rem;
+    }
+    aside {
+        position: fixed;
+        top: var(--header-height);
+        bottom: var(--footer-height);
+        left: 0;
+        width: var(--nav-width);
+        padding: 2rem 1rem;
+    }
+    main {
+        margin-left: var(--nav-width);
+        padding-top: calc(2rem + var(--header-height));
+        max-width: 500px;
+        margin: 0 auto;
+    }
+</style>

@@ -1,7 +1,11 @@
 ---
-import { render } from 'astro:content'
+import { type CollectionEntry, render } from 'astro:content'
 import BaseLayout from '../../../layouts/BaseLayout.astro'
-import { getWriting } from '../../../content.ts'
+import { getWriting } from '../../../writing.ts'
+
+type Props = {
+    piece: CollectionEntry<'writing'>
+}
 
 export async function getStaticPaths() {
     const content = await getWriting()
@@ -11,12 +15,11 @@ export async function getStaticPaths() {
     }))
 }
 
-const { piece } = Astro.props
-const { Content } = await render(piece)
+const { Content } = await render(Astro.props.piece)
 ---
 
 <BaseLayout>
-    <h1>{piece.data.title}</h1>
-    <h2>{piece.data.date}</h2>
+    <h1>{Astro.props.piece.data.title}</h1>
+    <h2>{Astro.props.piece.data.date}</h2>
     <Content />
 </BaseLayout>

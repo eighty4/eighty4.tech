@@ -8,13 +8,11 @@ type Props = {
 ---
 
 <ol class="project-list">
-    {
-        Astro.props.projects.map(p => (
-            <li class="project-list-item">
-                <ProjectCard project={p} />
-            </li>
-        ))
-    }
+    {Astro.props.projects.map(p => (
+        <li class="project-list-item">
+            <ProjectCard project={p} />
+        </li>
+    ))}
 </ol>
 
 <style>

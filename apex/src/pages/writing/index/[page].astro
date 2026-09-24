@@ -2,7 +2,7 @@
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '../../../layouts/BaseLayout.astro'
-import { getWriting } from '../../../content.ts'
+import { getWriting } from '../../../writing.ts'
 
 type Props = {
     page: Page<CollectionEntry<'writing'>>
@@ -17,18 +17,16 @@ const { page } = Astro.props
 <BaseLayout>
     <h1>{page.currentPage}</h1>
     <ol>
-        {
-            page.data.map(piece => (
-                <li>
-                    <h2>
-                        <a href={`/writing/content/${piece.id}`}>
-                            {piece.data.title}
-                        </a>
-                    </h2>
-                    <p>{piece.data.date}</p>
-                </li>
-            ))
-        }
+        {page.data.map(piece => (
+            <li>
+                <h2>
+                    <a href={`/writing/content/${piece.id}`}>
+                        {piece.data.title}
+                    </a>
+                </h2>
+                <p>{piece.data.date}</p>
+            </li>
+        ))}
     </ol>
     <div>
         {page.url.first ? <a href={page.url.first}>First</a> : null}

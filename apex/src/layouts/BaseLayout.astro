@@ -1,9 +1,20 @@
+---
+type Props = {
+    subtitle?: string
+}
+
+const { subtitle } = Astro.props
+
+const sep = ':'
+const title = `${subtitle ? `${subtitle} ${sep} ` : ''}eighty4`
+---
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
-        <title>eighty4.tech</title>
+        <title>{title}</title>
     </head>
     <body>
         <slot />

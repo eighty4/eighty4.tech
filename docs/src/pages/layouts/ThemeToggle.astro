@@ -1,0 +1,82 @@
+<div id="theme-toggle">
+    <div class="icon moon" data-theme="dark"></div>
+    <div class="icon sun" data-theme="light"></div>
+</div>
+
+<style>
+    .icon {
+        --size: 2rem;
+        cursor: pointer;
+        height: var(--size);
+        width: var(--size);
+        background-color: var(--color-pink);
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+    }
+    .moon {
+        display: var(--moon-display, none);
+        mask-image: url('./theme_moon.svg');
+    }
+    .sun {
+        display: var(--sun-display, none);
+        mask-image: url('./theme_sun.svg');
+    }
+    @media (prefers-color-scheme: light) {
+        #theme-toggle {
+            --moon-display: block;
+        }
+    }
+    @media (prefers-color-scheme: dark) {
+        #theme-toggle {
+            --sun-display: block;
+        }
+    }
+    html[data-theme='dark'] #theme-toggle {
+        --moon-display: none !important;
+        --sun-display: block !important;
+    }
+    html[data-theme='light'] #theme-toggle {
+        --moon-display: block !important;
+        --sun-display: none !important;
+    }
+</style>
+
+<script>
+    type Theme = 'light' | 'dark'
+
+    const container = document.getElementById('theme-toggle')!
+    for (const toggle of container.querySelectorAll<HTMLElement>('.icon')) {
+        toggle.addEventListener('click', onThemeToggle)
+    }
+
+    const CACHE_KEY = 'at4.theme'
+    const themeQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    themeQuery.addEventListener('change', unsetThemeOverride)
+
+    function setTheme(theme: Theme) {
+        const preferred = getPreferredTheme()
+        if (preferred === theme) {
+            unsetThemeOverride()
+        } else {
+            sessionStorage.setItem(
+                CACHE_KEY,
+                (document.documentElement.dataset.theme = theme),
+            )
+        }
+    }
+
+    function getPreferredTheme(): Theme {
+        return themeQuery.matches ? 'dark' : 'light'
+    }
+
+    function onThemeToggle(e: MouseEvent) {
+        const clicked = e.target as HTMLElement
+        setTheme(clicked.dataset.theme as Theme)
+    }
+
+    function unsetThemeOverride() {
+        delete document.documentElement.dataset.theme
+        sessionStorage.removeItem(CACHE_KEY)
+    }
+</script>

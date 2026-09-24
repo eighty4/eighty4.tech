@@ -47,7 +47,7 @@ permissions:
   deployments: write
 
 env:
-  DOMAINS: '{"apex": "https://eighty4.tech", "docs": "https://docs.eighty4.tech"}'
+  DOMAINS: '{"apex": "https://eighty4.tech", "docs": "https://man.eighty4.tech"}'
   NODE_VERSION: 26
   PROJECTS: '{"apex": "${{ vars.APEX_CLOUDFLARE_PROJECT_NAME }}", "docs": "${{ vars.DOCS_CLOUDFLARE_PROJECT_NAME }}"}'
 

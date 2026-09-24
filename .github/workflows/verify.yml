@@ -15,25 +15,53 @@ jobs:
     needs:
       - build-apex
       - build-docs
+      - clean-repos
       - fmtcheck
+      - test-docs-e2e
     steps:
       - run: echo "41°00′19″N 122°59′51″W"
 
   build-apex:
-    uses: ./.github/workflows/build.yml
-    with:
-      website: apex
+    uses: ./.github/workflows/build_apex.yml
 
   build-docs:
-    uses: ./.github/workflows/build.yml
-    with:
-      website: docs
+    uses: ./.github/workflows/build_docs.yml
+
+  clean-repos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
+        with:
+          install: false
+          runtime: ${{ env.RUNTIME }}
+      - run: node content/scripts/fetchRepos.ts
+      - run: git diff --exit-code --quiet
 
   fmtcheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: pnpm/setup@v2
+      - uses: pnpm/setup@v3
         with:
           runtime: ${{ env.RUNTIME }}
       - run: pnpm fmtcheck
+
+  test-docs-e2e:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
+        with:
+          runtime: ${{ env.RUNTIME }}
+      - run: pnpm exec playwright install --with-deps
+        working-directory: docs
+      - run: pnpm exec playwright test
+        working-directory: docs
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: docs/playwright-report/
+          retention-days: 7

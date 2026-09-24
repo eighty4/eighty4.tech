@@ -1,0 +1,28 @@
+name: Build docs
+run-name: Build docs website
+
+on:
+  workflow_call:
+
+env:
+  RUNTIME: node@26
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
+        with:
+          runtime: ${{ env.RUNTIME }}
+      - run: pnpm build
+        working-directory: docs
+        env:
+          DOCS_PROJECTS: '${{ github.workspace }}/docs/tests'
+          DOCS_TEST: true
+      - run: zip -qr ../../docs.zip .
+        working-directory: docs/dist
+      - uses: actions/upload-artifact@v7
+        with:
+          name: docs.zip
+          path: docs.zip

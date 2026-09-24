@@ -1,0 +1,27 @@
+---
+import { getEntry, render } from 'astro:content'
+import Layout from './layouts/ProjectLayout.astro'
+
+type Props = {
+    project: string
+    src: string
+    title: string
+}
+
+const nav = await getEntry('nav', Astro.props.project)
+if (!nav) throw TypeError('no nav for project ' + Astro.props.project)
+
+const page = await getEntry('pages', Astro.props.src)
+if (!page)
+    throw TypeError(`no ${Astro.props.project} page for ${Astro.props.src}`)
+
+const { Content } = await render(page)
+---
+
+<Layout
+    project={Astro.props.project}
+    sections={nav.data.sections}
+    subtitle={Astro.props.title}
+>
+    <Content />
+</Layout>

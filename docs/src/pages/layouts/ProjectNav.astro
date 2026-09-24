@@ -1,0 +1,112 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+type Props = {
+    project: string
+    sections: CollectionEntry<'nav'>['data']['sections']
+}
+
+function isSubpathMode(): boolean {
+    return import.meta.env.MODE === 'subpath'
+}
+
+const urlPrefix = (function makeUrlPrefix(): string {
+    if (isSubpathMode()) {
+        return '/'
+    } else {
+        return `/${Astro.props.project}/`
+    }
+})()
+
+function makeLinkHref(section: string, page: string) {
+    return `${urlPrefix}${section}/${page}`
+}
+
+function makeLinkClass(href: string): string | null {
+    const comparisonPath = Astro.url.pathname.endsWith('.html')
+        ? Astro.url.pathname.substring(0, Astro.url.pathname.lastIndexOf('.'))
+        : Astro.url.pathname
+    return comparisonPath === href ? 'current' : null
+}
+---
+
+<nav id="project-nav">
+    {Astro.props.sections.map(section => {
+        return (
+            <section>
+                <h3>{section.title}</h3>
+                <ol role="list">
+                    {section.pages.map(page => {
+                        const href = makeLinkHref(section.slug, page.slug)
+                        return (
+                            <li>
+                                <a class={makeLinkClass(href)} {href}>
+                                    {page.title}
+                                </a>
+                            </li>
+                        )
+                    })}
+                </ol>
+            </section>
+        )
+    })}
+</nav>
+
+<style>
+    nav {
+        border: 0.5px solid var(--theme-nav-border);
+        border-radius: 0.25rem;
+        padding: var(--nav-padding);
+    }
+    section + section {
+        margin-top: 1rem;
+    }
+    ol {
+        margin-top: 0.5rem;
+    }
+    li {
+        position: relative;
+        padding: 0.25rem 0 0.25rem 1rem;
+        &::before {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: -2px;
+            height: 100%;
+            width: 2px;
+            background: var(--theme-nav-track-bg);
+        }
+        &:has(> .current) {
+            &::before {
+                background: var(--theme-nav-track-fg);
+            }
+        }
+        & a {
+            display: inline-block;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-decoration: none;
+            &:not(.current):hover {
+                text-decoration: underline;
+            }
+            &.current {
+                font-weight: bold;
+            }
+        }
+    }
+</style>
+
+<script>
+    const nav = document.getElementById('project-nav') as HTMLElement
+    for (const anchor of nav.querySelectorAll<HTMLElement>('a')) {
+        anchor.addEventListener('mouseover', () => {
+            if (anchor.scrollWidth > anchor.clientWidth) {
+                anchor.setAttribute('title', anchor.textContent.trim())
+            } else {
+                anchor.removeAttribute('title')
+            }
+        })
+    }
+</script>

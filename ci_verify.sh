@@ -31,12 +31,13 @@ fi
 
 cd apex
 echo "*** verify apex ***"
-GH_TOKEN=$(gh auth token) pnpm build
+pnpm build
 cd ..
 
 cd docs
 echo "*** verify docs ***"
-GH_TOKEN=$(gh auth token) pnpm build
+pnpm build
+pnpm test
 cd ..
 
 echo "*** verify format ***"

@@ -5,6 +5,11 @@
     "lib": ["esnext"],
     "target": "esnext",
     "module": "nodenext",
-    "noEmit": true
-  }
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "skipLibCheck": true
+  },
+  "files": ["astro.x.d.ts"],
+  "include": ["lib/*.ts", "scripts/*.ts", "lib/docs/nav.ts"],
+  "exclude": ["node_modules"]
 }

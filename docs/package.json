@@ -1,14 +1,26 @@
 {
-  "name": "@eighty4.tech/docs",
+  "name": "@eighty4/www-docs",
+  "private": true,
   "type": "module",
   "version": "0.0.1",
+  "imports": {
+    "#content": "./src/content.config.ts",
+    "#pages/*": "./src/pages/*"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "test": "playwright test"
   },
   "dependencies": {
-    "astro": "^7.2.8"
+    "@astrojs/mdx": "catalog:",
+    "@eighty4/www-astro-content": "workspace:*",
+    "astro": "catalog:",
+    "semver": "catalog:"
+  },
+  "devDependencies": {
+    "@playwright/test": "catalog:",
+    "@types/node": "catalog:"
   }
 }

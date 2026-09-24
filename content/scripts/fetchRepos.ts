@@ -12,7 +12,13 @@ if (response.status !== 200) {
     process.exit(1)
 }
 
-const ghReposJson = await response.json()
+type GhRepo = {
+    name: string
+    description: string
+    homepage: string
+    html_url: string
+}
+const ghReposJson: Array<GhRepo> = await response.json()
 
 const projectsJsonPath = join(import.meta.dirname, '../lib/projects.json')
 const projectsJson = JSON.parse(await readFile(projectsJsonPath, 'utf8'))
@@ -53,4 +59,9 @@ reposJson.sort((r1: Repo, r2: Repo) => {
 })
 
 const reposJsonPath = join(import.meta.dirname, '../lib/repos.json')
-await writeFile(reposJsonPath, JSON.stringify(reposJson, null, 4))
+await writeFile(reposJsonPath, toStringMatchingPrettier(reposJson))
+
+// 2 space indents and newline at end
+function toStringMatchingPrettier(output: Array<Repo>) {
+    return JSON.stringify(output, null, 2) + '\n'
+}

@@ -1,0 +1,8 @@
+---
+import { DOCS_BUILD } from 'astro:env/server'
+import ProjectLanding from '#pages/ProjectLanding.astro'
+
+if (!DOCS_BUILD) throw TypeError()
+---
+
+<ProjectLanding project={DOCS_BUILD} />
