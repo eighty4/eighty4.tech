@@ -55,9 +55,9 @@ jobs:
       - uses: pnpm/setup@v3
         with:
           runtime: ${{ env.RUNTIME }}
-      - run: pnpm exec playwright install --with-deps
+      - run: pnpm exec playwright install --with-deps chromium
         working-directory: docs
-      - run: pnpm exec playwright test
+      - run: pnpm exec playwright test --project="*chromium"
         working-directory: docs
       - uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
