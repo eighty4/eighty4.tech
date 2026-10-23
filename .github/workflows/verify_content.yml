@@ -1,0 +1,21 @@
+name: Verify ./content
+run-name: 'Verify ./content ${{ github.sha }} (${{ github.ref_name }})'
+
+on:
+  pull_request:
+    branches: ['*']
+  workflow_call:
+
+env:
+  RUNTIME: node@26
+
+jobs:
+  clean-repos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
+        with:
+          install: false
+          runtime: ${{ env.RUNTIME }}
+      - run: node content/scripts/fetchRepos.ts
