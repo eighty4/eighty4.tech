@@ -1,0 +1,33 @@
+name: Verify ./apex
+run-name: 'Verify ./apex ${{ github.sha }} (${{ github.ref_name }})'
+
+on:
+  pull_request:
+    branches: ['*']
+    paths:
+      - 'apex/**/*'
+      - '*.json'
+      - '*.yaml'
+  workflow_call:
+
+env:
+  RUNTIME: node@26
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    needs:
+      - build-apex
+      - verify-content
+      - verify-format
+    steps:
+      - run: echo "41°00′19″N 122°59′51″W"
+
+  build-apex:
+    uses: ./.github/workflows/build_apex.yml
+
+  verify-content:
+    uses: ./.github/workflows/verify_content.yml
+
+  verify-format:
+    uses: ./.github/workflows/verify_format.yml

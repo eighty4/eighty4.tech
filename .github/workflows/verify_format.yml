@@ -1,0 +1,20 @@
+name: Verify format
+run-name: 'Verify format ${{ github.sha }} (${{ github.ref_name }})'
+
+on:
+  pull_request:
+    branches: ['*']
+  workflow_call:
+
+env:
+  RUNTIME: node@26
+
+jobs:
+  fmtcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
+        with:
+          runtime: ${{ env.RUNTIME }}
+      - run: pnpm fmtcheck

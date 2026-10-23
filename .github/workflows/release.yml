@@ -22,12 +22,18 @@ on:
         required: true
 
 jobs:
-  verify:
-    uses: ./.github/workflows/verify.yml
+  verify-apex:
+    if: inputs.website == 'apex'
+    uses: ./.github/workflows/verify_apex.yml
+
+  verify-docs:
+    if: inputs.website == 'docs'
+    uses: ./.github/workflows/verify_docs.yml
 
   tag:
     runs-on: ubuntu-latest
-    needs: [verify]
+    needs: [verify-apex, verify-docs]
+    if: ${{ always() && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') }}
     permissions:
       contents: write
     steps:
@@ -51,6 +57,7 @@ jobs:
 
   release:
     needs: tag
+    if: ${{ always() && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -71,6 +78,7 @@ jobs:
 
   deploy:
     needs: [release, tag]
+    if: ${{ always() && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') }}
     permissions:
       contents: read
       deployments: write
